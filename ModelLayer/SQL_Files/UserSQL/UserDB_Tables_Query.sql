@@ -1,0 +1,2 @@
+create database BookStore_ADO
+Use BookStore_ADO
