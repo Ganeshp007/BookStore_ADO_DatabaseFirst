@@ -8,5 +8,8 @@
     public interface IUserBL
     {
         public UserRegistrationModel UserRegistration(UserRegistrationModel registrationModel);
+
+        public List<GetAllUsersModel> GetAllUsers();
+
     }
 }

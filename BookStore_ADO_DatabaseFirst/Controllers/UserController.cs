@@ -21,13 +21,32 @@
         {
             try
             {
-                var result=this.userBL.UserRegistration(registrationModel);
+                var result = this.userBL.UserRegistration(registrationModel);
                 if (result == null)
                 {
                     return this.BadRequest(new { success = false, Message = "User Registration Failed!!" });
                 }
 
-                return this.Ok(new { success = true, Message = "User Registration Sucessfull", data=result });
+                return this.Ok(new { success = true, Message = "User Registration Sucessfull", data = result });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAllUsers()
+        {
+            try
+            {
+                var result = this.userBL.GetAllUsers();
+                if (result == null)
+                {
+                    return this.BadRequest(new { success = false, Message = "Something went wrong while Fetching Users Data !!" });
+                }
+
+                return this.Ok(new { success = true, Message = "User Data Fetched Sucessfully", data = result });
             }
             catch (Exception ex)
             {

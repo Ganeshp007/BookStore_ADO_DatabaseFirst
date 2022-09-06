@@ -16,6 +16,18 @@
             this.userRL = userRL;
         }
 
+        public List<GetAllUsersModel> GetAllUsers()
+        {
+            try
+            {
+                return this.userRL.GetAllUsers();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public UserRegistrationModel UserRegistration(UserRegistrationModel registrationModel)
         {
             try

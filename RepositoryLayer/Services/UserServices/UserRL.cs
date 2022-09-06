@@ -56,7 +56,45 @@
             }
         }
 
-        // method to Encrypt Password 
+        //Method to Get Records of All Users
+        public List<GetAllUsersModel> GetAllUsers()
+        {
+            List<GetAllUsersModel> listOfUsers = new List<GetAllUsersModel>();
+            SqlConnection sqlConnection = new SqlConnection(this.connetionString);
+            try
+            {
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("GetAllUsersSP", sqlConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        GetAllUsersModel User = new GetAllUsersModel();
+                        User.UserId = reader["UserId"] == DBNull.Value ? default : reader.GetInt32("UserId");
+                        User.FullName = Convert.ToString(reader["FullName"]);
+                        User.EmailId = Convert.ToString(reader["EmailId"]);
+                        string Password=Convert.ToString(reader["Password"]);
+                        User.Password = DecryptPassword(Password);
+                        User.MobileNo = Convert.ToInt64(reader["MobileNo"]);
+                        listOfUsers.Add(User);
+                    }
+
+                    return listOfUsers;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
+        // method to Encrypt Password
         public static string EncryptPassword(string Password)
         {
             try

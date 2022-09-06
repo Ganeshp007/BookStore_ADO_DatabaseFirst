@@ -19,3 +19,18 @@ SELECT
 END CATCH
 
 select * from Users
+
+--stored procedure for GetAllUsers
+create procedure GetAllUsersSP
+As
+Begin try
+select * from Users
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
