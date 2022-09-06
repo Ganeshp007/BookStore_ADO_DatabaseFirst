@@ -39,5 +39,17 @@
                 throw ex;
             }
         }
+
+        public string UserLogin(UserLoginModel loginModel)
+        {
+            try
+            {
+                return this.userRL.UserLogin(loginModel);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -53,5 +53,24 @@
                 throw ex;
             }
         }
+
+        [HttpPost("Login")]
+        public IActionResult UserLogin(UserLoginModel loginModel)
+        {
+            try
+            {
+                var result = this.userBL.UserLogin(loginModel);
+                if (result == null)
+                {
+                    return this.BadRequest(new { success = false, Message = "Login Failed!! Check your EmailId and Password and try again..." });
+                }
+
+                return this.Ok(new { success = true, Message = "User Login Sucessful...", data = result });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

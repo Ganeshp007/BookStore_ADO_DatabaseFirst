@@ -10,5 +10,7 @@
         public UserRegistrationModel UserRegistration(UserRegistrationModel registrationModel);
 
         public List<GetAllUsersModel> GetAllUsers();
+
+        public string UserLogin(UserLoginModel loginModel);
     }
 }

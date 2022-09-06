@@ -11,5 +11,6 @@
 
         public List<GetAllUsersModel> GetAllUsers();
 
+        public string UserLogin(UserLoginModel loginModel);
     }
 }
