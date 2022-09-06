@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="SQL_Files\UserSQL\" />
   </ItemGroup>
 

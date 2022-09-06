@@ -5,6 +5,8 @@ namespace BookStore_ADO_DatabaseFirst
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using BusinessLayer.Interfaces.UserInterfaces;
+    using BusinessLayer.Services.UserServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -16,6 +18,8 @@ namespace BookStore_ADO_DatabaseFirst
     using Microsoft.Extensions.Logging;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using RepositoryLayer.Interfaces.UserInterfaces;
+    using RepositoryLayer.Services.UserServices;
 
     public class Startup
     {
@@ -43,7 +47,7 @@ namespace BookStore_ADO_DatabaseFirst
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("THIS_IS_MY_KEY_TO_GENERATE_TOKEN")),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
 
                 };
             });
@@ -73,6 +77,9 @@ namespace BookStore_ADO_DatabaseFirst
                         { jwtSecurityScheme, Array.Empty<string>() },
                     });
                 });
+
+            services.AddTransient<IUserRL, UserRL>();
+            services.AddTransient<IUserBL, UserBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
