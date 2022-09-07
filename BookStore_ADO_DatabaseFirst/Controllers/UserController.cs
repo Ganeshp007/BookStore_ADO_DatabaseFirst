@@ -1,7 +1,11 @@
 ﻿namespace BookStore_ADO_DatabaseFirst.Controllers
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Security.Claims;
     using BusinessLayer.Interfaces.UserInterfaces;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using ModelLayer.Models.UserModels;
 
@@ -78,13 +82,40 @@
         {
             try
             {
+                if (EmailId == null)
+                {
+                    return this.BadRequest(new { success = false, Message = "Please provide valid Email address!!" });
+                }
                 var result = this.userBL.ForgotPassword(EmailId);
                 if (result == false)
                 {
                     return this.BadRequest(new { success = false, Message = "something went wrong while sending ResetPassword Link!!" });
                 }
 
-                return this.Ok(new { success = true, Message = $"Reset Password link sent Sucessfully...", data = result });
+                return this.Ok(new { success = true, Message = $"Reset Password link sent Sucessfully..."});
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Authorize]
+        [HttpPut("ResetPassword")]
+        public IActionResult ResetPassword(ResetPassModel passModel)
+        {
+            try
+            {
+                var identity = User.Identity as ClaimsIdentity;
+                IEnumerable<Claim> claims = identity.Claims;
+                var emailId = claims.Where(p => p.Type == @"EmailId").FirstOrDefault()?.Value;
+                bool result = this.userBL.ResetPassword(emailId, passModel);
+                if (result == true)
+                {
+                    return this.Ok(new { success = true, Message = $"Password Updated successfully for EmailId:{emailId}..." });
+                }
+
+                return this.BadRequest(new { success = false, Message = $"Reset Password Unsuccessful for EmailId:{emailId}!!" });
             }
             catch (Exception ex)
             {

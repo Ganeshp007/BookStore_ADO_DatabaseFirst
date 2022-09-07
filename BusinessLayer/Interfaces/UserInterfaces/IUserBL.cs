@@ -15,5 +15,7 @@
 
         public bool ForgotPassword(string EmailId);
 
+        public bool ResetPassword(string EmailId,ResetPassModel passModel);
+
     }
 }

@@ -63,5 +63,17 @@
                 throw ex;
             }
         }
+
+        public bool ResetPassword(string EmailId,ResetPassModel passModel)
+        {
+            try
+            {
+                return this.userRL.ResetPassword(EmailId, passModel);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

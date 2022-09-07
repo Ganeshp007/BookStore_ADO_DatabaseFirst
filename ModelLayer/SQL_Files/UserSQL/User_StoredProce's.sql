@@ -1,3 +1,5 @@
+use BookStore_ADO
+
 --stored procedure for UserRegistration
 create procedure UserRegistrationSP(
 @FullName varchar(255),
@@ -74,4 +76,24 @@ SELECT
 	ERROR_PROCEDURE() AS ErrorProcedure,
 	ERROR_LINE() AS ErrorLine,
 	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+--======================================================================
+
+--stored procedure for ResetPassword
+create procedure ResetPasswordSP(
+@EmailId varchar(255),
+@Password varchar(255)
+)
+AS
+BEGIN TRY
+update Users set Password=@Password where EmailId=@EmailId
+END TRY
+BEGIN CATCH
+SELECT
+      ERROR_NUMBER() AS ErrorNumber,
+	  ERROR_STATE() AS ErrorState,
+	  ERROR_PROCEDURE() AS ErrorProcedure,
+	  ERROR_LINE() AS ErrorLine,
+	  ERROR_MESSAGE() AS ErrorMessage
 END CATCH
