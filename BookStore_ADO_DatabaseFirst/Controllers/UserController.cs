@@ -11,7 +11,7 @@
 
     [ApiController]
     [Route("[controller]")]
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         IUserBL userBL;
 

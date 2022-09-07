@@ -149,12 +149,13 @@
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                    new Claim("EmailId", emailId),
-                    new Claim("UserId",userId.ToString())
+                        new Claim(ClaimTypes.Role, "Users"),
+                        new Claim("EmailId", emailId),
+                        new Claim("UserId",userId.ToString()),
                     }),
                     Expires = DateTime.UtcNow.AddHours(2),
 
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature),
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 return tokenHandler.WriteToken(token);

@@ -5,7 +5,9 @@ namespace BookStore_ADO_DatabaseFirst
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using BusinessLayer.Interfaces.AdminInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
+    using BusinessLayer.Services.AdminServices;
     using BusinessLayer.Services.UserServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
@@ -18,7 +20,9 @@ namespace BookStore_ADO_DatabaseFirst
     using Microsoft.Extensions.Logging;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using RepositoryLayer.Interfaces.AdminInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
+    using RepositoryLayer.Services.AdminServices;
     using RepositoryLayer.Services.UserServices;
 
     public class Startup
@@ -34,6 +38,12 @@ namespace BookStore_ADO_DatabaseFirst
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddAuthorization(x =>
+            {
+                x.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                x.AddPolicy("RequireUsersRole", policy => policy.RequireRole("Users"));
+            });
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -80,6 +90,9 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<IUserRL, UserRL>();
             services.AddTransient<IUserBL, UserBL>();
+
+            services.AddTransient<IAdminRL, AdminRL>();
+            services.AddTransient<IAdminBL, AdminBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
