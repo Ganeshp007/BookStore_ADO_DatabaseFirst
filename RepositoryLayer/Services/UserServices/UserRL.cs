@@ -7,6 +7,7 @@
     using System.IdentityModel.Tokens.Jwt;
     using System.Security.Claims;
     using System.Text;
+    using Experimental.System.Messaging;
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
     using ModelLayer.Models.UserModels;
@@ -137,7 +138,7 @@
         }
 
         //Method to Generate JWT Token for Authentication and Athorization when User Login Sucessful
-        private string GenerateJWTToken(string email, int userId)
+        private string GenerateJWTToken(string emailId, int userId)
         {
             try
             {
@@ -148,12 +149,122 @@
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                    new Claim("EmailId", email),
+                    new Claim("EmailId", emailId),
                     new Claim("UserId",userId.ToString())
                     }),
                     Expires = DateTime.UtcNow.AddHours(2),
 
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                return tokenHandler.WriteToken(token);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Method to send a Reset password link through mail using MSMQ (ForgotPassword)
+        public bool ForgotPassword(string EmailId)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            try
+            {
+                using (sqlConnection)
+                {
+                    sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("ForgotPasswordSP", sqlConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@EmailId", EmailId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    GetAllUsersModel response = new GetAllUsersModel();
+                    if (reader.Read())
+                    {
+                        response.UserId = reader["UserId"] == DBNull.Value ? default : reader.GetInt32("UserId");
+                        response.EmailId = reader["EmailId"] == DBNull.Value ? default : reader.GetString("EmailId");
+                        response.FullName = reader["FullName"] == DBNull.Value ? default : reader.GetString("FullName");
+                    }
+
+                    if(response.UserId == null || response.FullName == null || response.EmailId == null)
+                    {
+                        return false;
+                    }
+
+                    MessageQueue messageQueue;
+                    //add message to queue
+                    if (MessageQueue.Exists(@".\private$\BookStoreQueue"))
+                    {
+                        messageQueue = new MessageQueue(@".\private$\BookStoreQueue");
+                    }
+                    else
+                    {
+                        messageQueue = MessageQueue.Create(@".\private$\BookStoreQueue");
+                    }
+
+                    Message Mymessage = new Message();
+                    Mymessage.Formatter = new BinaryMessageFormatter();
+                    Mymessage.Body = GenerateJWTToken(EmailId, response.UserId);
+                    Mymessage.Label = "Forgot Password Email";
+                    messageQueue.Send(Mymessage);
+
+                    Message msg = messageQueue.Receive();
+                    msg.Formatter = new BinaryMessageFormatter();
+                    EmailService.SendEmail(EmailId, msg.Body.ToString(), response.FullName);
+                    messageQueue.ReceiveCompleted += new ReceiveCompletedEventHandler(msmQueue_ReceiveCompleted);
+                    messageQueue.BeginReceive();
+                    messageQueue.Close();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+        }
+
+        private void msmQueue_ReceiveCompleted(object sender, ReceiveCompletedEventArgs e)
+        {
+            try
+            {
+                MessageQueue queue = (MessageQueue)sender;
+                Message msg = queue.EndReceive(e.AsyncResult);
+                EmailService.SendEmail(e.Message.ToString(), GenerateToken(e.Message.ToString()), e.Message.ToString());
+                queue.BeginReceive();
+            }
+            catch (MessageQueueException ex)
+            {
+                if (ex.MessageQueueErrorCode == MessageQueueErrorCode.AccessDenied)
+                {
+                    Console.WriteLine("Access Denied!!" + "Queue might be system queue...");
+                }
+            }
+        }
+
+        private string GenerateToken(string emailId)
+        { //generate token
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenKey = Encoding.ASCII.GetBytes("THIS_IS_MY_KEY_TO_GENERATE_TOKEN");
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim("EmailId", emailId),
+                    }),
+                    Expires = DateTime.UtcNow.AddHours(2),
+
+                    SigningCredentials = new SigningCredentials(
+                                        new SymmetricSecurityKey(tokenKey),
+                                        SecurityAlgorithms.HmacSha256Signature),
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 return tokenHandler.WriteToken(token);

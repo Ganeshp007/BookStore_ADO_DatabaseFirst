@@ -72,5 +72,24 @@
                 throw ex;
             }
         }
+
+        [HttpPost("ForgotPassword")]
+        public IActionResult ForgotPassword(string EmailId)
+        {
+            try
+            {
+                var result = this.userBL.ForgotPassword(EmailId);
+                if (result == false)
+                {
+                    return this.BadRequest(new { success = false, Message = "something went wrong while sending ResetPassword Link!!" });
+                }
+
+                return this.Ok(new { success = true, Message = $"Reset Password link sent Sucessfully...", data = result });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

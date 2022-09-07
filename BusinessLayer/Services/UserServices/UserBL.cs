@@ -51,5 +51,17 @@
                 throw ex;
             }
         }
+
+        public bool ForgotPassword(string EmailId)
+        {
+            try
+            {
+                return this.userRL.ForgotPassword(EmailId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

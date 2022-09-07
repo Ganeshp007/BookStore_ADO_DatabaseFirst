@@ -12,5 +12,7 @@
         public List<GetAllUsersModel> GetAllUsers();
 
         public string UserLogin(UserLoginModel loginModel);
+
+        public bool ForgotPassword(string EmailId);
     }
 }

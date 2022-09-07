@@ -39,7 +39,7 @@ END CATCH
 
 --======================================================================
 
---stored procedure for GetAllUsers
+--stored procedure for UserLogin
 create procedure UserLoginSP(
 @EmailId varchar(255),
 @Password varchar(255)
@@ -47,6 +47,25 @@ create procedure UserLoginSP(
 As
 Begin try
 select * from Users where EmailId=@EmailId and Password=@Password
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+--======================================================================
+
+--stored procedure for ForgotPassword
+create procedure ForgotPasswordSP(
+@EmailId varchar(255)
+)
+As
+Begin try
+select * from Users where EmailId=@EmailId
 end try
 Begin catch
 SELECT 
