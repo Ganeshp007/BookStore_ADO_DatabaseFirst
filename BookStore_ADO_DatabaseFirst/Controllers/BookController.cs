@@ -56,5 +56,45 @@
                 throw ex;
             }
         }
+
+        [Authorize(Roles = Role.Admin)]
+        [HttpPost("UpdateBooks")]
+        public IActionResult UpdateBooks(int BookId,BookPostModel bookPostModel)
+        {
+            try
+            {
+                var result = this.bookBL.UpdateBooks(BookId, bookPostModel);
+                if (result == null)
+                {
+                    return this.BadRequest(new { success = false, Message = "Book update Failed!!" });
+                }
+
+                return this.Ok(new { success = true, Message = "Book Updated Sucessfully...", data = result });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Authorize]
+        [HttpGet("GetBookById")]
+        public IActionResult GetBookById(int BookId)
+        {
+            try
+            {
+                var result = this.bookBL.GetBookById(BookId);
+                if (result == null)
+                {
+                    return this.BadRequest(new { success = false, Message = "No Book with this Id Available!!" });
+                }
+
+                return this.Ok(new { success = true, Message = $"Book details fetched Sucessfully... BookId : {result.BookId}", data = result });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

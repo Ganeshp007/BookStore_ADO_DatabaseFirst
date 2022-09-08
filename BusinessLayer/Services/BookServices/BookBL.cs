@@ -39,5 +39,29 @@
                 throw ex;
             }
         }
+
+        public BookResponseModel GetBookById(int BookId)
+        {
+            try
+            {
+                return this.bookRL.GetBookById(BookId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BookResponseModel UpdateBooks(int BookId, BookPostModel bookPostModel)
+        {
+            try
+            {
+                return this.bookRL.UpdateBooks(BookId, bookPostModel);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

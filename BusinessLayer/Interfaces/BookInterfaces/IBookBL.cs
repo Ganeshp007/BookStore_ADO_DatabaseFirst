@@ -10,5 +10,9 @@
         public BookPostModel AddBook(BookPostModel bookPostModel);
 
         public List<BookResponseModel> GetAllBooks();
+
+        public BookResponseModel UpdateBooks(int BookId, BookPostModel bookPostModel);
+
+        public BookResponseModel GetBookById(int BookId);
     }
 }
