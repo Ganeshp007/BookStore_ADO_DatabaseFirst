@@ -6,8 +6,10 @@ namespace BookStore_ADO_DatabaseFirst
     using System.Text;
     using System.Threading.Tasks;
     using BusinessLayer.Interfaces.AdminInterfaces;
+    using BusinessLayer.Interfaces.BookInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
     using BusinessLayer.Services.AdminServices;
+    using BusinessLayer.Services.BookServices;
     using BusinessLayer.Services.UserServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
@@ -21,8 +23,10 @@ namespace BookStore_ADO_DatabaseFirst
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
     using RepositoryLayer.Interfaces.AdminInterfaces;
+    using RepositoryLayer.Interfaces.BookInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
     using RepositoryLayer.Services.AdminServices;
+    using RepositoryLayer.Services.BookServices;
     using RepositoryLayer.Services.UserServices;
 
     public class Startup
@@ -93,6 +97,9 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<IAdminRL, AdminRL>();
             services.AddTransient<IAdminBL, AdminBL>();
+
+            services.AddTransient<IBookRL, BookRL>();
+            services.AddTransient<IBookBL, BookBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

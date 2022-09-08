@@ -1,3 +1,4 @@
+use BookStore_ADO
 --stored procedure for Admin Login
 create procedure AdminLoginSP(
 @AdminEmailId varchar(255),
