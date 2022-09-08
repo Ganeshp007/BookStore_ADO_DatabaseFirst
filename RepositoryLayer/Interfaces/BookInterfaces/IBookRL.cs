@@ -8,5 +8,7 @@
     public interface IBookRL
     {
         public BookPostModel AddBook(BookPostModel bookPostModel);
+
+        public List<BookResponseModel> GetAllBooks();
     }
 }

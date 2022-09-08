@@ -36,5 +36,25 @@
                 throw ex;
             }
         }
+
+        [Authorize]
+        [HttpGet("GetAllBooks")]
+        public IActionResult GetAllBooks()
+        {
+            try
+            {
+                var result = this.bookBL.GetAllBooks();
+                if (result == null)
+                {
+                    return this.BadRequest(new { success = false, Message = "No Books Available!!" });
+                }
+
+                return this.Ok(new { success = true, Message = "Books records fetched Sucessfully...", data = result });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

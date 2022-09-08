@@ -27,12 +27,12 @@
         [Required]
         [DefaultValue(0)]
         [Range(1,100000,ErrorMessage = "Book Price must be in Range: 1-100000")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         [Required]
         [DefaultValue(0)]
         [Range(1, 100000, ErrorMessage = "Book Discounted Price must be in Range: 1-100000")]
-        public double DiscountPrice { get; set; }
+        public decimal DiscountPrice { get; set; }
 
         [Required]
         [DefaultValue(0)]

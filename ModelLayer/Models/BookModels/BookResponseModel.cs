@@ -16,11 +16,11 @@
 
         public int Quantity { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
-        public double DiscountPrice { get; set; }
+        public decimal DiscountPrice { get; set; }
 
-        public float TotalRating { get; set; }
+        public double TotalRating { get; set; }
 
         public int RatingCount { get; set; }
 

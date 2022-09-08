@@ -27,5 +27,17 @@
                 throw ex;
             }
         }
+
+        public List<BookResponseModel> GetAllBooks()
+        {
+            try
+            {
+                return this.bookRL.GetAllBooks();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
