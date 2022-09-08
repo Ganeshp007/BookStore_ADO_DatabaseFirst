@@ -24,7 +24,9 @@ SELECT
 	ERROR_MESSAGE() AS ErrorMessage;
 END CATCH
 
-Exec AddBookSP [Don't Think, Revisited: A Common Sense Approach to Web Usability (3rd Edition) (Voices That Matter) 3rd Edition],'Sveg','Since Don’t Make Me Think was first published in 2000, hundreds of thousands of Web designers and developers have relied on usability guru Steve Krug’s guide to help them understand the principles of intuitive navigation and information design. Witty, commonsensical, and eminently practical, it’s one of the best-loved and most recommended books on the subject.',2,3035.58,2800,4.6,2455,[https://www.amazon.in/Dont-Make-Think-Revisited-Usability-ebook/dp/B00HJUBRPG]
+Exec AddBookSP [Don't Think, Revisited: A Common Sense Approach to Web Usability (3rd Edition) (Voices That Matter) 3rd Edition],'Sveg','Since Don’t Make Me Think was first published in 2000, hundreds of thousands of Web designers and developers have relied on usability guru Steve Krug’s guide to help them understand the principles of intuitive navigation and information design. Witty, commonsensical, and eminently practical, it’s one of the best-loved and most recommended books on the subject.',2,3035.58,2800,4.6,25,[https://www.amazon.in/Dont-Make-Think-Revisited-Usability-ebook/dp/B00HJUBRPG]
+Exec AddBookSP [The Secret Hardcover – November 28, 2006],'by Rhonda Byrne','In 2006, a groundbreaking feature-length film revealed the great mystery of the universe—The Secret—and, later that year, Rhonda Byrne followed with a book that became a worldwide bestseller.\nFragments of a Great Secret have been found in the oral traditions, in literature, in religions, and philosophies throughout the centuries. For the first time, all the pieces of The Secret come together in an incredible revelation that will be life-transforming for all who experience it.',4,1701.58,1500,4.6,245,[https://images-na.ssl-images-amazon.com/images/I/81MArWaiw1L.jpg]
+Exec AddBookSP [Mahabharat (Marathi) Paperback – 1 January 2009],'by Madhav Kanitkar','A Classic Retelling of the beloved epic of Mahabharata.',15,985.15,900,4.7,505,[https://images-na.ssl-images-amazon.com/images/I/51BY892gRGL._SX382_BO1,204,203,200_.jpg]
 
 --======================================================================
 
@@ -72,7 +74,7 @@ SELECT
 	ERROR_MESSAGE() AS ErrorMessage;
 END CATCH
 
-Exec UpdateBooksSP 1,[Don't Think, Revisited: A Common Sense Approach to Web Usability (3rd Edition) (Voices That Matter)],'Sveg','Since Don’t Make Me Think was first published in 2000, hundreds of thousands of Web designers and developers have relied on usability guru Steve Krug’s guide to help them understand the principles of intuitive navigation and information design. Witty, commonsensical, and eminently practical, it’s one of the best-loved and most recommended books on the subject.',2,3035.58,2800,4.6,2455,[https://www.amazon.in/Dont-Make-Think-Revisited-Usability-ebook/dp/B00HJUBRPG]
+Exec UpdateBooksSP 1,[Don't Think, Revisited: A Common Sense Approach to Web Usability (3rd Edition) (Voices That Matter)],'by Krug Steve ','Since Don’t Make Me Think was first published in 2000, hundreds of thousands of Web designers and developers have relied on usability guru Steve Krug’s guide to help them understand the principles of intuitive navigation and information design. Witty, commonsensical, and eminently practical, it’s one of the best-loved and most recommended books on the subject.',2,3035.58,2800,4.6,25,[https://www.amazon.in/Dont-Make-Think-Revisited-Usability-ebook/dp/B00HJUBRPG]
 --======================================================================
 
 --stored procedure for GetBooksByIdSP

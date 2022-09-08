@@ -111,11 +111,6 @@
                     SqlCommand cmd = new SqlCommand("GetBooksByIdSP", sqlConnection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@BookId ", BookId);
-                    var result = cmd.ExecuteNonQuery();
-                    if (result == 0)
-                    {
-                        return null;
-                    }
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     BookResponseModel book = new BookResponseModel();
@@ -131,6 +126,11 @@
                         book.TotalRating = reader["TotalRating"] == DBNull.Value ? default : reader.GetDouble("TotalRating");
                         book.RatingCount = reader["RatingCount"] == DBNull.Value ? default : reader.GetInt32("RatingCount");
                         book.BookImg = reader["BookImg"] == DBNull.Value ? default : reader.GetString("BookImg");
+                    }
+
+                    if (book.BookId == 0)
+                    {
+                        return null;
                     }
 
                     return book;

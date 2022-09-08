@@ -7,9 +7,11 @@ namespace BookStore_ADO_DatabaseFirst
     using System.Threading.Tasks;
     using BusinessLayer.Interfaces.AdminInterfaces;
     using BusinessLayer.Interfaces.BookInterfaces;
+    using BusinessLayer.Interfaces.CartInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
     using BusinessLayer.Services.AdminServices;
     using BusinessLayer.Services.BookServices;
+    using BusinessLayer.Services.CartServices;
     using BusinessLayer.Services.UserServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
@@ -24,9 +26,11 @@ namespace BookStore_ADO_DatabaseFirst
     using Microsoft.OpenApi.Models;
     using RepositoryLayer.Interfaces.AdminInterfaces;
     using RepositoryLayer.Interfaces.BookInterfaces;
+    using RepositoryLayer.Interfaces.CartInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
     using RepositoryLayer.Services.AdminServices;
     using RepositoryLayer.Services.BookServices;
+    using RepositoryLayer.Services.CartServices;
     using RepositoryLayer.Services.UserServices;
 
     public class Startup
@@ -100,6 +104,9 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<IBookRL, BookRL>();
             services.AddTransient<IBookBL, BookBL>();
+
+            services.AddTransient<ICartRL, CartRL>();
+            services.AddTransient<ICartBL, CartBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
