@@ -112,7 +112,6 @@
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@EmailId", loginModel.EmailId);
                     cmd.Parameters.AddWithValue("@Password", Password);
-                    cmd.ExecuteNonQuery();
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     GetAllUsersModel response = new GetAllUsersModel();
@@ -121,9 +120,12 @@
                         response.UserId = reader["UserId"] == DBNull.Value ? default : reader.GetInt32("UserId");
                         response.EmailId = reader["EmailId"] == DBNull.Value ? default : reader.GetString("EmailId");
                         response.Password = reader["Password"] == DBNull.Value ? default : reader.GetString("Password");
+                        return GenerateJWTToken(response.EmailId, response.UserId);
                     }
-
-                    return GenerateJWTToken(response.EmailId, response.UserId);
+                    else
+                    {
+                        return null;
+                    }
                 }
 
             }

@@ -58,7 +58,7 @@
         }
 
         [Authorize(Roles = Role.Admin)]
-        [HttpPost("UpdateBooks")]
+        [HttpPut("UpdateBooks/{BookId}")]
         public IActionResult UpdateBooks(int BookId,BookPostModel bookPostModel)
         {
             try
@@ -78,7 +78,7 @@
         }
 
         [Authorize]
-        [HttpGet("GetBookById")]
+        [HttpGet("GetBookById/{BookId}")]
         public IActionResult GetBookById(int BookId)
         {
             try
@@ -98,7 +98,7 @@
         }
 
         [Authorize(Roles = Role.Admin)]
-        [HttpDelete("DeleteBook")]
+        [HttpDelete("DeleteBook/{BookId}")]
         public IActionResult DeleteBook(int BookId)
         {
             try
@@ -116,5 +116,7 @@
                 throw ex;
             }
         }
+
+
     }
 }

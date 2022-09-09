@@ -13,7 +13,7 @@ SET @count=(select count(CartId) from Cart where UserId IN (@UserId) AND BookId 
 IF(@count = 0)
 insert into Cart(UserId,BookId,BookQuantity) values(@UserId,@BookId,@BookQuantity)
 ELSE
-print'The Book is already in Cart!!'
+print'Check if Book is available or Its already in Cart!!'
 end try
 Begin catch
 SELECT 
@@ -23,6 +23,93 @@ SELECT
 	ERROR_LINE() AS ErrorLine,
 	ERROR_MESSAGE() AS ErrorMessage;
 END CATCH
-drop procedure AddBookTOCartSP
+
 Exec AddBookTOCartSP 1,2,2
 --======================================================================
+
+--stored procedure for GetALlBookInCart
+create procedure GetAllBooksInCartSP(
+@UserId int
+)
+As
+Begin try
+select 
+c.CartId,b.BookId,b.BookName,b.Author,b.Description,c.BookQuantity,b.Price,b.DiscountPrice,b.BookImg
+from Cart c INNER JOIN Books b ON c.BookId = b.BookId where UserId = @UserId
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+--======================================================================
+
+--stored procedure for UpdateCartbyCartId
+create procedure UpdateCartItemSP(
+@UserId int,
+@CartId int,
+@BookId int,
+@BookQuantity int
+)
+As
+Begin try
+update Cart set BookQuantity=@BookQuantity where CartId = @CartId and UserId = @UserId and BookId = @BookId
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+Exec UpdateCartbyCartIdSP 1,1,4
+
+--======================================================================
+
+--stored procedure for deleteCartItem
+create procedure DeleteCartItemSP(
+@CartId int,
+@UserId int
+)
+As
+Begin try
+delete from Cart where CartId=@CartId AND UserId=@UserId
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+--======================================================================
+
+--stored procedure for GetCartItemByCartId
+create procedure GetCartItemByCartIdSP(
+@UserId int,
+@CartId int
+)
+As
+Begin try
+select 
+c.CartId,b.BookId,b.BookName,b.Author,b.Description,c.BookQuantity,b.Price,b.DiscountPrice,b.BookImg
+from Cart c INNER JOIN Books b ON c.BookId = b.BookId where UserId = @UserId and CartId = @CartId
+end try
+Begin catch
+SELECT 
+	ERROR_NUMBER() AS ErrorNumber,
+	ERROR_STATE() AS ErrorState,
+	ERROR_PROCEDURE() AS ErrorProcedure,
+	ERROR_LINE() AS ErrorLine,
+	ERROR_MESSAGE() AS ErrorMessage;
+END CATCH
+
+exec GetCartItemByCartIdSP 1,1

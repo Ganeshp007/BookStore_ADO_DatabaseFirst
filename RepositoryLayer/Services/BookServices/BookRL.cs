@@ -61,7 +61,7 @@
 
         public List<BookResponseModel> GetAllBooks()
         {
-            List<BookResponseModel> listOfUsers = new List<BookResponseModel>();
+            List<BookResponseModel> list = new List<BookResponseModel>();
             SqlConnection sqlConnection = new SqlConnection(this.connectionString);
             try
             {
@@ -84,10 +84,10 @@
                         book.TotalRating = reader["TotalRating"] == DBNull.Value ? default : reader.GetDouble("TotalRating");
                         book.RatingCount = reader["RatingCount"] == DBNull.Value ? default : reader.GetInt32("RatingCount");
                         book.BookImg = reader["BookImg"] == DBNull.Value ? default : reader.GetString("BookImg");
-                        listOfUsers.Add(book);
+                        list.Add(book);
                     }
 
-                    return listOfUsers;
+                    return list;
                 }
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     BookResponseModel book = new BookResponseModel();
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         book.BookId = reader["BookId"] == DBNull.Value ? default : reader.GetInt32("BookId");
                         book.BookName = reader["BookName"] == DBNull.Value ? default : reader.GetString("BookName");
