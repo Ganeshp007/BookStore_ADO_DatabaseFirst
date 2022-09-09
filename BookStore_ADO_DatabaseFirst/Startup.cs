@@ -9,10 +9,12 @@ namespace BookStore_ADO_DatabaseFirst
     using BusinessLayer.Interfaces.BookInterfaces;
     using BusinessLayer.Interfaces.CartInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
+    using BusinessLayer.Interfaces.WishListInterfaces;
     using BusinessLayer.Services.AdminServices;
     using BusinessLayer.Services.BookServices;
     using BusinessLayer.Services.CartServices;
     using BusinessLayer.Services.UserServices;
+    using BusinessLayer.Services.WishListServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -28,10 +30,12 @@ namespace BookStore_ADO_DatabaseFirst
     using RepositoryLayer.Interfaces.BookInterfaces;
     using RepositoryLayer.Interfaces.CartInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
+    using RepositoryLayer.Interfaces.WishListInterfaces;
     using RepositoryLayer.Services.AdminServices;
     using RepositoryLayer.Services.BookServices;
     using RepositoryLayer.Services.CartServices;
     using RepositoryLayer.Services.UserServices;
+    using RepositoryLayer.Services.WishListServices;
 
     public class Startup
     {
@@ -107,6 +111,9 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<ICartRL, CartRL>();
             services.AddTransient<ICartBL, CartBL>();
+
+            services.AddTransient<IWishListRL, WishListRL>();
+            services.AddTransient<IWishListBL, WishListBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

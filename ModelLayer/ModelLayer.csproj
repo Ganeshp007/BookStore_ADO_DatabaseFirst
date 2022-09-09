@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="SQL_Files\WishListSQL\" />
     <Folder Include="SQL_Files\UserSQL\" />
   </ItemGroup>
 
