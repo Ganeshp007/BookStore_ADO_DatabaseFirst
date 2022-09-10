@@ -26,6 +26,7 @@ SELECT
 	ERROR_LINE() AS ErrorLine,
 	ERROR_MESSAGE() AS ErrorMessage;
 END CATCH
+
 select * from WishList
 select * from Books
 select * from Cart

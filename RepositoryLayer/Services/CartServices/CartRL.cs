@@ -69,17 +69,17 @@
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        CartResponseModel book = new CartResponseModel();
-                        book.CartId = reader["CartId"] == DBNull.Value ? default : reader.GetInt32("CartId");
-                        book.UserId = UserId;
-                        book.BookId = reader["BookId"] == DBNull.Value ? default : reader.GetInt32("BookId");
-                        book.BookName = reader["BookName"] == DBNull.Value ? default : reader.GetString("BookName");
-                        book.Author = reader["Author"] == DBNull.Value ? default : reader.GetString("Author");
-                        book.BookQuantity = reader["BookQuantity"] == DBNull.Value ? default : reader.GetInt32("BookQuantity");
-                        book.Price = reader["Price"] == DBNull.Value ? default : reader.GetDecimal("Price");
-                        book.DiscountPrice = reader["DiscountPrice"] == DBNull.Value ? default : reader.GetDecimal("DiscountPrice");
-                        book.BookImg = reader["BookImg"] == DBNull.Value ? default : reader.GetString("BookImg");
-                        list.Add(book);
+                        CartResponseModel cartdetails = new CartResponseModel();
+                        cartdetails.CartId = reader["CartId"] == DBNull.Value ? default : reader.GetInt32("CartId");
+                        cartdetails.UserId = UserId;
+                        cartdetails.BookId = reader["BookId"] == DBNull.Value ? default : reader.GetInt32("BookId");
+                        cartdetails.BookName = reader["BookName"] == DBNull.Value ? default : reader.GetString("BookName");
+                        cartdetails.Author = reader["Author"] == DBNull.Value ? default : reader.GetString("Author");
+                        cartdetails.BookQuantity = reader["BookQuantity"] == DBNull.Value ? default : reader.GetInt32("BookQuantity");
+                        cartdetails.Price = reader["Price"] == DBNull.Value ? default : reader.GetDecimal("Price");
+                        cartdetails.DiscountPrice = reader["DiscountPrice"] == DBNull.Value ? default : reader.GetDecimal("DiscountPrice");
+                        cartdetails.BookImg = reader["BookImg"] == DBNull.Value ? default : reader.GetString("BookImg");
+                        list.Add(cartdetails);
                     }
 
                     return list;
@@ -176,26 +176,26 @@
                     cmd.Parameters.AddWithValue("@CartId", CartId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
-                    CartResponseModel book = new CartResponseModel();
+                    CartResponseModel cartdetails = new CartResponseModel();
                     if (reader.Read())
                     {
-                        book.CartId = reader["CartId"] == DBNull.Value ? default : reader.GetInt32("CartId");
-                        book.UserId = UserId;
-                        book.BookId = reader["BookId"] == DBNull.Value ? default : reader.GetInt32("BookId");
-                        book.BookName = reader["BookName"] == DBNull.Value ? default : reader.GetString("BookName");
-                        book.Author = reader["Author"] == DBNull.Value ? default : reader.GetString("Author");
-                        book.BookQuantity = reader["BookQuantity"] == DBNull.Value ? default : reader.GetInt32("BookQuantity");
-                        book.Price = reader["Price"] == DBNull.Value ? default : reader.GetDecimal("Price");
-                        book.DiscountPrice = reader["DiscountPrice"] == DBNull.Value ? default : reader.GetDecimal("DiscountPrice");
-                        book.BookImg = reader["BookImg"] == DBNull.Value ? default : reader.GetString("BookImg");
+                        cartdetails.CartId = reader["CartId"] == DBNull.Value ? default : reader.GetInt32("CartId");
+                        cartdetails.UserId = UserId;
+                        cartdetails.BookId = reader["BookId"] == DBNull.Value ? default : reader.GetInt32("BookId");
+                        cartdetails.BookName = reader["BookName"] == DBNull.Value ? default : reader.GetString("BookName");
+                        cartdetails.Author = reader["Author"] == DBNull.Value ? default : reader.GetString("Author");
+                        cartdetails.BookQuantity = reader["BookQuantity"] == DBNull.Value ? default : reader.GetInt32("BookQuantity");
+                        cartdetails.Price = reader["Price"] == DBNull.Value ? default : reader.GetDecimal("Price");
+                        cartdetails.DiscountPrice = reader["DiscountPrice"] == DBNull.Value ? default : reader.GetDecimal("DiscountPrice");
+                        cartdetails.BookImg = reader["BookImg"] == DBNull.Value ? default : reader.GetString("BookImg");
                     }
 
-                    if (book.BookId == 0)
+                    if (cartdetails.BookId == 0)
                     {
                         return null;
                     }
 
-                    return book;
+                    return cartdetails;
                 }
             }
             catch (Exception ex)

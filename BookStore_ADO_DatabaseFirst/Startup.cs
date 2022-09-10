@@ -5,11 +5,13 @@ namespace BookStore_ADO_DatabaseFirst
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using BusinessLayer.Interfaces.AddressInterfaces;
     using BusinessLayer.Interfaces.AdminInterfaces;
     using BusinessLayer.Interfaces.BookInterfaces;
     using BusinessLayer.Interfaces.CartInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
     using BusinessLayer.Interfaces.WishListInterfaces;
+    using BusinessLayer.Services.AddressServices;
     using BusinessLayer.Services.AdminServices;
     using BusinessLayer.Services.BookServices;
     using BusinessLayer.Services.CartServices;
@@ -26,11 +28,13 @@ namespace BookStore_ADO_DatabaseFirst
     using Microsoft.Extensions.Logging;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using RepositoryLayer.Interfaces.AddressInterfaces;
     using RepositoryLayer.Interfaces.AdminInterfaces;
     using RepositoryLayer.Interfaces.BookInterfaces;
     using RepositoryLayer.Interfaces.CartInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
     using RepositoryLayer.Interfaces.WishListInterfaces;
+    using RepositoryLayer.Services.AddressServices;
     using RepositoryLayer.Services.AdminServices;
     using RepositoryLayer.Services.BookServices;
     using RepositoryLayer.Services.CartServices;
@@ -114,6 +118,9 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<IWishListRL, WishListRL>();
             services.AddTransient<IWishListBL, WishListBL>();
+
+            services.AddTransient<IAddressRL, AddressRL>();
+            services.AddTransient<IAddressBL, AddressBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
