@@ -47,7 +47,7 @@ END CATCH
 
 --======================================================================
 
---stored procedure for AddBook
+--stored procedure for UpdateBook
 create procedure UpdateBooksSP(
 @BookId int,
 @BookName varchar(255),

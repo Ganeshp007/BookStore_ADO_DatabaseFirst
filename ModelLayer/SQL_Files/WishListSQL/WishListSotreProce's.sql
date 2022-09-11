@@ -43,7 +43,7 @@ create procedure GetAllWishListSP(
 As
 Begin try
 select 
-w.WishListId,b.BookId,b.BookName,b.Author,b.Description,b.Price,b.DiscountPrice,b.BookImg
+w.WishListId,b.BookId,b.BookName,b.Author,b.Price,b.DiscountPrice,b.BookImg
 from WishList w INNER JOIN Books b ON w.BookId = b.BookId where UserId = @UserId
 end try
 Begin catch

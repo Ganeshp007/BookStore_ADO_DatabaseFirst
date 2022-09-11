@@ -86,6 +86,7 @@
                 {
                     return this.BadRequest(new { success = false, Message = "Please provide valid Email address!!" });
                 }
+
                 var result = this.userBL.ForgotPassword(EmailId);
                 if (result == false)
                 {

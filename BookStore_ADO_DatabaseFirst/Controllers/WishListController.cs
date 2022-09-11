@@ -33,7 +33,7 @@
                 var result = this.wishListBL.AddTOWishList(UserId, listPostModel);
                 if (result == false)
                 {
-                    return this.BadRequest(new { success = false, Message = $"Check if Book is availbale OR it is already in WishList!!  WishListId : {listPostModel.BookId} to the WishList!!" });
+                    return this.BadRequest(new { success = false, Message = $"Check if Book is availbale OR it is already in WishList or in Cart!!  WishListId : {listPostModel.BookId} to the WishList!!" });
                 }
 
                 return this.Ok(new { success = true, Message = $"WishListId : {listPostModel.BookId} Added to WishList Sucessfull..." });
@@ -54,7 +54,7 @@
                 var userId = claims.Where(p => p.Type == @"UserId").FirstOrDefault()?.Value;
                 int UserId = Convert.ToInt32(userId);
                 List<WishListResponseModel> result = this.wishListBL.GetAllWishList(UserId);
-                if (result == null)
+                if (result.Count == 0)
                 {
                     return this.BadRequest(new { success = false, Message = $"No Book available in WishList!!" });
                 }

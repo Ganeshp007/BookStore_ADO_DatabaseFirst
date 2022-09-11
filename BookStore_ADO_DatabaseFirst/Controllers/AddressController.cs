@@ -54,7 +54,7 @@
                 var userId = claims.Where(p => p.Type == @"UserId").FirstOrDefault()?.Value;
                 int UserId = Convert.ToInt32(userId);
                 List<AddressResponseModel> result = this.addressBL.GetAllAddress(UserId);
-                if (result == null)
+                if (result.Count == 0)
                 {
                     return this.BadRequest(new { success = false, Message = $"No Addresses available For UserId : {UserId}!!" });
                 }

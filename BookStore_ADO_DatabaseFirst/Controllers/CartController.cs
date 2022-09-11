@@ -54,7 +54,7 @@
                 var userId = claims.Where(p => p.Type == @"UserId").FirstOrDefault()?.Value;
                 int UserId = Convert.ToInt32(userId);
                 List<CartResponseModel> result = this.cartBL.GetAllBooksInCart(UserId);
-                if (result == null)
+                if (result.Count == 0)
                 {
                     return this.BadRequest(new { success = false, Message = $"No Book available in cart!!" });
                 }
