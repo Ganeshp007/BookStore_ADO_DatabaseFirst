@@ -1,8 +1,6 @@
 ﻿namespace RepositoryLayer.Interfaces.AddressInterfaces
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using ModelLayer.Models.AddressModels;
 
     public interface IAddressRL

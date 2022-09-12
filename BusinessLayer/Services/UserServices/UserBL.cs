@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using BusinessLayer.Interfaces.UserInterfaces;
     using ModelLayer.Models.UserModels;
     using RepositoryLayer.Interfaces.UserInterfaces;

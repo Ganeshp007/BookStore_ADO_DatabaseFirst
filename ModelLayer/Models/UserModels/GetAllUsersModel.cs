@@ -1,9 +1,5 @@
 ﻿namespace ModelLayer.Models.UserModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class GetAllUsersModel
     {
         public int UserId { get; set; }

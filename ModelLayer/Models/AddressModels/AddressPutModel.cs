@@ -1,14 +1,13 @@
 ﻿namespace ModelLayer.Models.AddressModels
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     public class AddressPutModel
     {
         [Required]
+        [DefaultValue("0")]
         public int AddressId { get; set; }
 
         [Required]

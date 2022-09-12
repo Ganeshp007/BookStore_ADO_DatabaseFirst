@@ -1,13 +1,13 @@
 ﻿namespace BookStore_ADO_DatabaseFirst.Controllers
 {
-    using BusinessLayer.Interfaces.WishListInterfaces;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using ModelLayer.Models.WishListModels;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Claims;
+    using BusinessLayer.Interfaces.WishListInterfaces;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using ModelLayer.Models.WishListModels;
 
     [Authorize(Roles = Role.Users)]
     [Route("[controller]")]

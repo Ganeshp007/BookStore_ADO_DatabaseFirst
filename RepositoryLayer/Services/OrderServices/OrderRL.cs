@@ -4,10 +4,8 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Text;
     using Microsoft.Extensions.Configuration;
     using ModelLayer.Models.OrderModels;
-    using ModelLayer.Models.WishListModels;
     using RepositoryLayer.Interfaces.OrderInterfaces;
 
     public class OrderRL : IOrderRL

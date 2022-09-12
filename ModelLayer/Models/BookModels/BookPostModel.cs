@@ -1,10 +1,8 @@
 ﻿namespace ModelLayer.Models.BookModels
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     public class BookPostModel
     {

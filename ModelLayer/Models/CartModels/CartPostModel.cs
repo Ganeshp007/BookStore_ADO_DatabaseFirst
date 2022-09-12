@@ -1,14 +1,13 @@
 ﻿namespace ModelLayer.Models.CartModels
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     public class CartPostModel
     {
         [Required]
+        [DefaultValue("0")]
         public int BookId { get; set; }
 
         [Required]

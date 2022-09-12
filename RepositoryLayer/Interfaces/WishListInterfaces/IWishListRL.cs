@@ -1,8 +1,6 @@
 ﻿namespace RepositoryLayer.Interfaces.WishListInterfaces
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using ModelLayer.Models.WishListModels;
 
     public interface IWishListRL

@@ -1,9 +1,5 @@
 ﻿namespace ModelLayer.Models.CartModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class CartResponseModel
     {
         public int CartId { get; set; }

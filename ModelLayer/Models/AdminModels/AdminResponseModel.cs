@@ -1,9 +1,5 @@
 ﻿namespace ModelLayer.Models.AdminModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class AdminResponseModel
     {
         public int AdminId {get; set;}

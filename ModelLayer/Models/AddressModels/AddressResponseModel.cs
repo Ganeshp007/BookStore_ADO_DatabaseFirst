@@ -1,9 +1,5 @@
 ﻿namespace ModelLayer.Models.AddressModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class AddressResponseModel
     {
         public int AddressId { get; set; }

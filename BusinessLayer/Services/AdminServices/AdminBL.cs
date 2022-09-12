@@ -1,8 +1,6 @@
 ﻿namespace BusinessLayer.Services.AdminServices
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
     using BusinessLayer.Interfaces.AdminInterfaces;
     using ModelLayer.Models.AdminModels;
     using RepositoryLayer.Interfaces.AdminInterfaces;

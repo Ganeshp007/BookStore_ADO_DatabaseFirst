@@ -1,9 +1,5 @@
 ﻿namespace ModelLayer.Models.BookModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class BookResponseModel
     {
         public int BookId { get; set; }

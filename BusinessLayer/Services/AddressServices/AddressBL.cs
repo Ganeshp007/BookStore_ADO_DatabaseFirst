@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using BusinessLayer.Interfaces.AddressInterfaces;
-    using Microsoft.Extensions.Configuration;
     using ModelLayer.Models.AddressModels;
     using RepositoryLayer.Interfaces.AddressInterfaces;
 

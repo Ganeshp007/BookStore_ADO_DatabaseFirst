@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Text;
     using Microsoft.Extensions.Configuration;
     using ModelLayer.Models.CartModels;
     using RepositoryLayer.Interfaces.CartInterfaces;

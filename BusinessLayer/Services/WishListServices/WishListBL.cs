@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
     using BusinessLayer.Interfaces.WishListInterfaces;
     using ModelLayer.Models.WishListModels;
     using RepositoryLayer.Interfaces.WishListInterfaces;

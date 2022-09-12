@@ -6,6 +6,7 @@ namespace BookStore_ADO_DatabaseFirst
     using BusinessLayer.Interfaces.AdminInterfaces;
     using BusinessLayer.Interfaces.BookInterfaces;
     using BusinessLayer.Interfaces.CartInterfaces;
+    using BusinessLayer.Interfaces.FeedbackInterfaces;
     using BusinessLayer.Interfaces.OrderInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
     using BusinessLayer.Interfaces.WishListInterfaces;
@@ -13,6 +14,7 @@ namespace BookStore_ADO_DatabaseFirst
     using BusinessLayer.Services.AdminServices;
     using BusinessLayer.Services.BookServices;
     using BusinessLayer.Services.CartServices;
+    using BusinessLayer.Services.FeedbackServices;
     using BusinessLayer.Services.OrderServices;
     using BusinessLayer.Services.UserServices;
     using BusinessLayer.Services.WishListServices;
@@ -28,6 +30,7 @@ namespace BookStore_ADO_DatabaseFirst
     using RepositoryLayer.Interfaces.AdminInterfaces;
     using RepositoryLayer.Interfaces.BookInterfaces;
     using RepositoryLayer.Interfaces.CartInterfaces;
+    using RepositoryLayer.Interfaces.FeedbackInterfaces;
     using RepositoryLayer.Interfaces.OrderInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
     using RepositoryLayer.Interfaces.WishListInterfaces;
@@ -35,6 +38,7 @@ namespace BookStore_ADO_DatabaseFirst
     using RepositoryLayer.Services.AdminServices;
     using RepositoryLayer.Services.BookServices;
     using RepositoryLayer.Services.CartServices;
+    using RepositoryLayer.Services.FeedbackRL;
     using RepositoryLayer.Services.OrderServices;
     using RepositoryLayer.Services.UserServices;
     using RepositoryLayer.Services.WishListServices;
@@ -122,6 +126,9 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<IOrderRL, OrderRL>();
             services.AddTransient<IOrderBL, OrderBL>();
+
+            services.AddTransient<IFeedbackRL, FeedbackRL>();
+            services.AddTransient<IFeedbackBL, FeedbackBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

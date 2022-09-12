@@ -1,8 +1,6 @@
 ﻿namespace BusinessLayer.Interfaces.OrderInterfaces
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using ModelLayer.Models.OrderModels;
 
     public interface IOrderBL

@@ -1,9 +1,5 @@
 ﻿namespace ModelLayer.Models.WishListModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class WishListResponseModel
     {
         public int WishListId { get; set; }

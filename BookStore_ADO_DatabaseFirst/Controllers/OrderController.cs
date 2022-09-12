@@ -7,7 +7,6 @@
     using BusinessLayer.Interfaces.OrderInterfaces;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using ModelLayer.Models.AddressModels;
     using ModelLayer.Models.OrderModels;
 
     [Authorize(Roles = Role.Users)]
@@ -30,10 +29,10 @@
                 var result = this.orderBL.AddOrder(postModel);
                 if (result == false)
                 {
-                    return this.BadRequest(new { success = false, Message = $"Check if Book is availbale in cart OR Check enough Books are in stock !!" });
+                    return this.BadRequest(new { success = false, Message = $"Check if Book is availbale in cart OR Check enough Books are in stock !! OR Check AddressId Exists!!" });
                 }
 
-                return this.Ok(new { success = true, Message = $"Order placed to Sucessfully..." });
+                return this.Ok(new { success = true, Message = $"Order placed Sucessfully..." });
             }
             catch (Exception ex)
             {

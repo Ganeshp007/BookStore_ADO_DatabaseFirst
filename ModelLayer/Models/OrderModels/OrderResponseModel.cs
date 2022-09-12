@@ -1,10 +1,6 @@
 ﻿namespace ModelLayer.Models.OrderModels
 {
     using System;
-    using System.Collections.Generic;
-    using System.Data.SqlTypes;
-    using System.Net;
-    using System.Text;
 
     public class OrderResponseModel
     {

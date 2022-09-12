@@ -1,17 +1,17 @@
 ﻿namespace ModelLayer.Models.CartModels
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
 
     public class CartUpdateModel
     {
         [Required]
+        [DefaultValue("0")]
         public int CartId { get; set; }
 
         [Required]
+        [DefaultValue("0")]
         public int BookId { get; set; }
 
         [Required]
