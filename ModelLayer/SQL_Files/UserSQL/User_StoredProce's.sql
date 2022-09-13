@@ -48,7 +48,7 @@ create procedure UserLoginSP(
 )
 As
 Begin try
-select * from Users where EmailId=@EmailId and Password=@Password
+select * from Users where EmailId=@EmailId COLLATE SQL_Latin1_General_CP1_CS_AS and Password=@Password COLLATE SQL_Latin1_General_CP1_CS_AS
 end try
 Begin catch
 SELECT 

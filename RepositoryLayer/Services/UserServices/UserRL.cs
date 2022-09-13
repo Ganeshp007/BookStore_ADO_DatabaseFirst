@@ -37,7 +37,7 @@
                     cmd.Parameters.AddWithValue("@FullName", registrationModel.FullName);
                     cmd.Parameters.AddWithValue("@EmailId", registrationModel.EmailId);
                     cmd.Parameters.AddWithValue("@Password", Password);
-                    cmd.Parameters.AddWithValue("@MobileNo", registrationModel.MobileNo);
+                    cmd.Parameters.AddWithValue("@MobileNo", Convert.ToInt64(registrationModel.MobileNo));
                     int result = cmd.ExecuteNonQuery();
 
                     if (result > 0)

@@ -21,8 +21,8 @@
         public string Password { get; set; }
 
         [Required]
-        [DefaultValue("91")]
+        [DefaultValue("")]
         [RegularExpression("^[1-9]{2}[6-9]{1}[0-9]{9}$", ErrorMessage = "Please Enter Valid Mobile No  Eg. 91+9900995544")] //MobileNo Validation
-        public long MobileNo { get; set; }
+        public string MobileNo { get; set; }
     }
 }
