@@ -1,12 +1,12 @@
 use BookStore_ADO
 --stored procedure for Admin Login
-create procedure AdminLoginSP(
+alter procedure AdminLoginSP(
 @AdminEmailId varchar(255),
 @AdminPassword varchar(255)
 )
 As
 Begin try
-select * from Admin where @AdminEmailId=@AdminEmailId and @AdminPassword=@AdminPassword
+select * from Admin where AdminEmailId=@AdminEmailId COLLATE SQL_Latin1_General_CP1_CS_AS and AdminPassword=@AdminPassword COLLATE SQL_Latin1_General_CP1_CS_AS
 end try
 Begin catch
 SELECT 

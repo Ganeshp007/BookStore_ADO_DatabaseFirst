@@ -77,7 +77,7 @@
             }
         }
 
-        [HttpPost("ForgotPassword")]
+        [HttpPost("ForgotPassword/{EmailId}")]
         public IActionResult ForgotPassword(string EmailId)
         {
             try

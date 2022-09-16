@@ -33,7 +33,6 @@
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@AdminEmailId", loginModel.AdminEmailId);
                     cmd.Parameters.AddWithValue("@AdminPassword", loginModel.AdminPassword);
-                    cmd.ExecuteNonQuery();
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     AdminResponseModel response = new AdminResponseModel();
@@ -42,11 +41,11 @@
                         response.AdminId = reader["AdminId"] == DBNull.Value ? default : reader.GetInt32("AdminId");
                         response.AdminEmailId = reader["AdminEmailId"] == DBNull.Value ? default : reader.GetString("AdminEmailId");
                         response.AdminPassword = reader["AdminPassword"] == DBNull.Value ? default : reader.GetString("AdminPassword");
+                        return GenerateJWTToken_Admin(response.AdminEmailId, response.AdminId);
                     }
 
-                    return GenerateJWTToken_Admin(response.AdminEmailId, response.AdminId);
+                    return null;
                 }
-
             }
             catch (Exception ex)
             {
